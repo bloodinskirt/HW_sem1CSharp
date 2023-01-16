@@ -45,14 +45,17 @@ Console.WriteLine(result);
 
 // Напишите программу, которая задаёт массив из m элементов и выводит их на экран.
 /*
-int[] CreateRandomArray(int length)
+int[] CreateArray(int size)
 {
-    int[] array = new int[length];
+    int[] array = new int[size];
 
-    for (int i = 0; i < length; i++)
-        array[i] = new Random().Next();
+    for (int i = 0; i < size; i++)
+    {
+       Console.Write($"Input a {i + 1} element: ");
+       array[i] = Convert.ToInt32(Console.ReadLine()); 
+    }
     
-    return array;    
+    return array;
 }
 
 void ShowArray(int[] array)
@@ -66,7 +69,7 @@ void ShowArray(int[] array)
 Console.Write("Input a length of array: ");
 int length = Convert.ToInt32(Console.ReadLine());
 
-int[] newArray = CreateRandomArray(length);
+int[] newArray = CreateArray(length);
 
 ShowArray(newArray);
 */
