@@ -112,23 +112,52 @@ Console.Write(EvenNumsNotIndex(newArray));
 // Задайте массив вещественных чисел.
 // Найдите разницу между максимальным и минимальным элементов массива.
 
-double[] CreateRandomArray(int length, int minValue, int maxValue)
+double[] CreateRandomArray(int length, double minValue, double maxValue)
 {
-    double[] array = new double[length];
-
+    Random rnd = new Random();
+    double[] array = new double[length];            
     for (int i = 0; i < length; i++)
-        array[i] = new Random().NextDouble(minValue, maxValue);
-    
-    return array;    
+    {                
+        array[i] = rnd.Next((int)minValue, (int)maxValue - 1) + rnd.NextDouble();
+    }
+    return array;
 }
 
-void ShowArray(int[] array)
+void ShowArray(double[] array)
 {
     for (int i = 0; i < array.Length; i++)
         Console.Write(array[i] + " ");
         
     Console.WriteLine();
 }
+
+double FindMinValue(double[] array)
+{
+    double min = 0.0;
+    if (array.Length > 0)
+    {
+        min = array[0];
+        for (int i = 1; i < array.Length; i++)
+        {
+            if (array[i] < min) min = array[i];
+        }
+    }
+    return min;
+}
+double FindMaxValue(double[] array)
+{
+    double max = 0.0;
+    if (array.Length > 0)
+    {
+        max = array[0];
+        for (int i = 1; i < array.Length; i++)
+        {
+            if (array[i] > max) max = array[i];
+        }
+    }
+    return max;
+}
+
 
 Console.Write("Input a length of array: ");
 int length = Convert.ToInt32(Console.ReadLine());
@@ -137,8 +166,9 @@ int min = Convert.ToInt32(Console.ReadLine());
 Console.Write("Input a max: ");
 int max = Convert.ToInt32(Console.ReadLine());
 
-int[] newArray = CreateRandomArray(length, min, max);
+double[] newArray = CreateRandomArray(length, min, max);
 ShowArray(newArray);
+Console.Write(FindMaxValue(newArray) - FindMinValue(newArray));
 
 // Не разобрался как делать эту задачу, буду рад если в комментарии
 // объясните как сделать, или наводку какую-нибудь на решение
